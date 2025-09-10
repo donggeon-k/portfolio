@@ -1,306 +1,236 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Your Name — Portfolio</title>
-  <meta name="description" content="Portfolio of Your Name: projects, skills, and contact information." />
-  <meta property="og:title" content="Your Name — Portfolio" />
-  <meta property="og:description" content="Projects, skills, and contact information." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0f172a" />
-  <link rel="icon" href="favicon.ico" />
+  <meta name="description" content="Your Name — Professional portfolio." />
   <style>
     :root{
-      --bg:#0b1020;          /* background */
-      --card:#111833;        /* card background */
-      --muted:#94a3b8;       /* muted text */
-      --text:#e2e8f0;        /* main text */
-      --accent:#60a5fa;      /* accent */
-      --accent-2:#34d399;    /* secondary accent */
-      --ring: rgba(96,165,250,.5);
-      --shadow: 0 10px 25px rgba(0,0,0,.25);
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --text: #0f172a;
+      --accent: #0ea5a4;
+      --glass: rgba(255,255,255,0.6);
+      --radius: 12px;
+      --shadow: 0 6px 18px rgba(15,23,42,0.08);
     }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#475569; --accent:#2563eb; --accent-2:#059669; --ring:rgba(37,99,235,.35);}  
+    .dark{
+      --bg: #071129;
+      --card: #071a27;
+      --muted: #94a3b8;
+      --text: #e6eef7;
+      --accent: #2dd4bf;
+      --glass: rgba(255,255,255,0.03);
+      --shadow: 0 10px 30px rgba(2,6,23,0.6);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif; 
-      color:var(--text); background: radial-gradient(1200px 500px at 70% -100px, rgba(96,165,250,.15), transparent), var(--bg);
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg),color-mix(in srgb, var(--bg) 90%, var(--card) 10%));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:48px 24px;
+      transition:background .25s ease, color .25s ease;
     }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1100px; margin:auto; padding:0 1rem}
+    .container{max-width:1100px;margin:0 auto}
 
-    /* Header */
     header{
-      position:sticky; top:0; backdrop-filter:saturate(120%) blur(6px); background:color-mix(in oklab, var(--bg) 80%, transparent); z-index:100;
-      border-bottom:1px solid rgba(148,163,184,.15);
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;
     }
-    .nav{display:flex; align-items:center; justify-content:space-between; padding: .75rem 0}
-    .brand{display:flex; gap:.6rem; align-items:center; font-weight:700}
-    .dot{width:10px; height:10px; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 0 0 4px rgba(96,165,250,.15)}
-    .nav a{margin-left:1rem}
-    .menu-btn{display:none}
-    @media (max-width:760px){
-      .nav-links{display:none}
-      .menu-btn{display:inline-flex; align-items:center; gap:.4rem; padding:.45rem .7rem; border:1px solid rgba(148,163,184,.3); border-radius:10px; background:transparent; color:var(--text)}
-      .menu-open .nav-links{display:flex; flex-direction:column; gap:.75rem; padding:1rem 0}
+    .brand{
+      display:flex;gap:12px;align-items:center;
     }
+    .logo{
+      width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 60%, var(--card) 40%));
+      box-shadow:var(--shadow);
+      display:flex;align-items:center;justify-content:center;color:var(--card);font-weight:700;font-size:18px;
+    }
+    h1{margin:0;font-size:clamp(20px,3.6vw,32px)}
+    p.lead{margin:6px 0 0;color:var(--muted)}
 
-    /* Hero */
-    .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap:2rem; align-items:center; padding:3rem 0}
-    .hero h1{font-size:clamp(2rem,5vw,3rem); line-height:1.15; margin:.2rem 0}
-    .hero p{color:var(--muted)}
-    .hero .actions{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem}
-    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:var(--card); color:var(--text); box-shadow:var(--shadow)}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:white; border-color:transparent}
-    .hero .avatar{justify-self:center; width:180px; height:180px; border-radius:22px; background:linear-gradient(135deg, rgba(96,165,250,.25), rgba(52,211,153,.25)); display:grid; place-items:center; box-shadow:var(--shadow)}
-    .hero .avatar img{width:90%; height:90%; object-fit:cover; border-radius:18px}
-    @media (max-width:960px){ .hero{grid-template-columns:1fr; text-align:center} .hero .avatar{order:-1} }
+    .controls{display:flex;gap:12px;align-items:center}
+    .btn{display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border-radius:10px;background:var(--card);box-shadow:var(--shadow);border:none;cursor:pointer;font-weight:600}
+    .btn.secondary{background:transparent;border:1px solid color-mix(in srgb,var(--text) 6%, transparent);}
+    .btn.download{background:linear-gradient(90deg,var(--accent), color-mix(in srgb,var(--accent) 65%, var(--card) 35%));color:var(--card)}
 
-    /* Sections */
-    section{padding:2rem 0; border-top:1px solid rgba(148,163,184,.15)}
-    section h2{font-size:1.6rem; margin:.2rem 0 1rem}
+    main{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+    @media (max-width:900px){main{grid-template-columns:1fr;padding-bottom:24px}}
+    .card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
 
-    /* Projects */
-    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem}
-    @media (max-width:960px){ .grid{grid-template-columns: repeat(2, 1fr)} }
-    @media (max-width:640px){ .grid{grid-template-columns: 1fr} }
-    .card{background:var(--card); border:1px solid rgba(148,163,184,.15); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
-    .card img{width:100%; height:160px; object-fit:cover}
-    .card .body{padding:1rem}
-    .card h3{margin:.2rem 0 .4rem; font-size:1.1rem}
-    .tags{display:flex; gap:.35rem; flex-wrap:wrap; margin-top:.5rem}
-    .tag{font-size:.8rem; padding:.25rem .5rem; border-radius:999px; border:1px solid rgba(148,163,184,.25); color:var(--muted)}
+    .hero{padding:22px;display:flex;flex-direction:column;gap:14px}
+    .roles{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--text) 4%, transparent);font-size:13px;color:var(--muted)}
 
-    /* About */
-    .about{background:linear-gradient(180deg, rgba(96,165,250,.08), transparent)}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    @media (max-width:900px){.projects{grid-template-columns:1fr}}
+    .project{padding:14px;border-radius:10px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--text) 2%, transparent));border:1px solid color-mix(in srgb,var(--text) 3%, transparent)}
+    .project h3{margin:0 0 6px}
+    .project p{margin:0;color:var(--muted);font-size:14px}
 
-    /* Skills */
-    .chips{display:flex; gap:.5rem; flex-wrap:wrap}
-    .chip{padding:.5rem .7rem; border-radius:999px; border:1px dashed rgba(148,163,184,.35)}
+    aside .card{position:sticky;top:24px}
+    .download-area{text-align:center}
+    .meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:13px}
 
-    /* Contact */
-    .contact{display:grid; grid-template-columns: 1fr 1fr; gap:1rem}
-    .contact .panel{background:var(--card); border:1px solid rgba(148,163,184,.15); border-radius:14px; padding:1rem; box-shadow:var(--shadow)}
-    .contact form{display:grid; gap:.7rem}
-    .contact input,.contact textarea{width:100%; padding:.7rem .8rem; border-radius:10px; border:1px solid rgba(148,163,184,.35); background:transparent; color:var(--text)}
-    .contact input:focus,.contact textarea:focus{outline:2px solid var(--ring); border-color:transparent}
-    .contact textarea{min-height:120px; resize:vertical}
-    @media (max-width:820px){ .contact{grid-template-columns:1fr} }
+    footer{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
 
-    footer{padding:2rem 0; color:var(--muted); text-align:center}
+    /* small utilities */
+    a{color:inherit;text-decoration:none}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* Skip link */
-    .skip-link{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden}
-    .skip-link:focus{left:1rem; top:1rem; width:auto; height:auto; background:var(--card); color:var(--text); padding:.5rem .75rem; border-radius:10px; z-index:999}
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header>
-    <div class="container nav" role="navigation" aria-label="Main">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> <span>Your Name</span></div>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-        <a href="resume.pdf" download aria-label="Download resume (PDF)">Resume ↓</a>
-      </nav>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
-    </div>
-    <div class="container nav-links" id="menu" hidden>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <a href="resume.pdf" download>Resume ↓</a>
-    </div>
-  </header>
-
-  <main id="main" class="container">
-    <!-- HERO -->
-    <section class="hero" aria-label="Introduction">
-      <div>
-        <p style="letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0">Hi, I’m</p>
-        <h1>Your Name</h1>
-        <p>A short, punchy sentence about what you do and the value you bring. For example: “Full‑stack developer focused on delightful, accessible web apps.”</p>
-        <div class="actions">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="resume.pdf" download>
-            <span aria-hidden>⬇</span> Download Resume
-          </a>
-          <a class="btn" href="mailto:you@example.com">Email Me</a>
-        </div>
-        <div class="actions" aria-label="Social links">
-          <a href="https://github.com/yourhandle" aria-label="GitHub">GitHub</a> ·
-          <a href="https://www.linkedin.com/in/yourhandle" aria-label="LinkedIn">LinkedIn</a> ·
-          <a href="https://x.com/yourhandle" aria-label="Twitter/X">X</a>
+  <div class="container" id="page">
+    <header>
+      <div class="brand">
+        <div class="logo">YN</div>
+        <div>
+          <h1 id="name">Your Name</h1>
+          <p class="lead">Product Designer & Frontend Engineer — building clean, accessible interfaces.</p>
         </div>
       </div>
-      <div class="avatar" aria-hidden="true">
-        <!-- Replace with your headshot -->
-        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=600&auto=format&fit=crop" alt="" />
+
+      <div class="controls">
+        <button id="themeToggle" class="btn secondary" aria-pressed="false" title="Toggle light / dark mode">🌗 Toggle</button>
+        <a class="btn download" href="resume.pdf" download="YourName_Resume.pdf" id="downloadResume">⬇️ Resume</a>
       </div>
-    </section>
+    </header>
 
-    <!-- PROJECTS -->
-    <section id="projects" aria-label="Projects">
-      <h2>Featured Projects</h2>
-      <div class="grid">
-        <!-- Project Card 1 -->
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Screenshot of Project One" />
-          <div class="body">
-            <h3>Project One</h3>
-            <p>A concise description of what the project does and why it matters. Include your role and impact.</p>
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-              <span class="tag">Node</span>
-            </div>
-            <p>
-              <a href="https://github.com/yourhandle/project-one">Source</a> ·
-              <a href="https://your-demo-link.example">Live Demo</a>
-            </p>
-          </div>
-        </article>
-        <!-- Project Card 2 -->
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1505740106531-4243f3831c78?q=80&w=1200&auto=format&fit=crop" alt="Screenshot of Project Two" />
-          <div class="body">
-            <h3>Project Two</h3>
-            <p>What problem did you solve? Call out measurable results if possible (e.g., 30% faster build times).</p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Postgres</span>
-            </div>
-            <p>
-              <a href="https://github.com/yourhandle/project-two">Source</a> ·
-              <a href="#">Case Study</a>
-            </p>
-          </div>
-        </article>
-        <!-- Project Card 3 -->
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop" alt="Screenshot of Project Three" />
-          <div class="body">
-            <h3>Project Three</h3>
-            <p>Short description. Mention stack, collaborators, and what you specifically owned.</p>
-            <div class="tags">
-              <span class="tag">Go</span>
-              <span class="tag">gRPC</span>
-              <span class="tag">Kubernetes</span>
-            </div>
-            <p>
-              <a href="https://github.com/yourhandle/project-three">Source</a> ·
-              <a href="#">Live Demo</a>
-            </p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="about" aria-label="About">
-      <h2>About</h2>
-      <p>
-        Brief bio (3–5 sentences). Share your focus areas, what you’re learning, and what you want next. Keep it human and specific.
-      </p>
-      <p>
-        <strong>Currently:</strong> Building <em>Project One</em>, exploring <em>LLMs</em>, and mentoring at <em>Open Source Club</em>.
-      </p>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" aria-label="Skills">
-      <h2>Skills</h2>
-      <div class="chips">
-        <span class="chip">JavaScript / TypeScript</span>
-        <span class="chip">React / Next.js</span>
-        <span class="chip">Node / Express</span>
-        <span class="chip">Python / FastAPI</span>
-        <span class="chip">SQL / Postgres</span>
-        <span class="chip">Docker / K8s</span>
-        <span class="chip">CI/CD</span>
-        <span class="chip">Testing</span>
-        <span class="chip">Accessibility (a11y)</span>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" aria-label="Contact">
-      <h2>Get in touch</h2>
-      <div class="contact">
-        <div class="panel">
-          <p>
-            Email me at <a id="emailLink" href="mailto:you@example.com">you@example.com</a> or use the form.
-          </p>
-          <button class="btn" id="copyEmailBtn" type="button">Copy email</button>
+    <main>
+      <section class="card hero">
+        <div class="roles">
+          <span class="chip">Frontend</span>
+          <span class="chip">UX</span>
+          <span class="chip">Design Systems</span>
+          <span class="chip">React</span>
         </div>
-        <form class="panel" name="contact" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact" />
-          <label>
-            Name
-            <input name="name" autocomplete="name" required />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" autocomplete="email" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" required></textarea>
-          </label>
-          <button class="btn primary" type="submit">Send</button>
-        </form>
-      </div>
-    </section>
-  </main>
 
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Your Name. Built with plain HTML/CSS. <a href="resume.pdf" download>Download resume</a>.</p>
-    </div>
-  </footer>
+        <h2 style="margin-top:4px">Hello — I’m <span id="heroName">Your Name</span>. I design and build delightful product experiences.</h2>
+        <p class="lead">I work on consumer-facing web apps with a focus on performance, accessibility, and polished UI. I’ve shipped interfaces for startups and teams of all sizes.</p>
+
+        <div style="display:flex;gap:12px;margin-top:14px">
+          <a class="btn" href="#projects">View projects</a>
+          <a class="btn" href="mailto:youremail@example.com">Get in touch</a>
+        </div>
+
+        <section style="margin-top:18px">
+          <h3 style="margin:0 0 10px">Selected projects</h3>
+          <div class="projects" id="projects">
+            <article class="project">
+              <h3>Project One</h3>
+              <p>Brief description about the project, your role, and technologies used.</p>
+            </article>
+            <article class="project">
+              <h3>Project Two</h3>
+              <p>Brief description about the project, your role, and technologies used.</p>
+            </article>
+            <article class="project">
+              <h3>Project Three</h3>
+              <p>Brief description about the project, your role, and technologies used.</p>
+            </article>
+            <article class="project">
+              <h3>Project Four</h3>
+              <p>Brief description about the project, your role, and technologies used.</p>
+            </article>
+          </div>
+        </section>
+
+      </section>
+
+      <aside>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),transparent);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--card)">YN</div>
+            <div>
+              <div style="font-weight:700">Your Name</div>
+              <div style="color:var(--muted);font-size:13px">Location — City, Country</div>
+            </div>
+          </div>
+
+          <div class="meta" style="margin-bottom:8px"><span>Experience</span><span>3+ yrs</span></div>
+          <div class="meta" style="margin-bottom:12px"><span>Role</span><span>Frontend Engineer</span></div>
+
+          <div style="margin-bottom:12px">
+            <h4 style="margin:0 0 8px">Skills</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">React</span>
+              <span class="chip">TypeScript</span>
+            </div>
+          </div>
+
+          <div class="download-area">
+            <a class="btn download" href="resume.pdf" download>
+              ⬇️ Download resume
+            </a>
+            <p style="margin-top:8px;color:var(--muted);font-size:13px">Resume will download as <strong>YourName_Resume.pdf</strong>. Place <code>resume.pdf</code> in the same repo root.</p>
+          </div>
+
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <h4 style="margin:0 0 8px">Contact</h4>
+          <p style="margin:0 0 12px;color:var(--muted)">Email — <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+          <p style="margin:0 0 10px;color:var(--muted)">Or download my vCard: <a href="#">(add vcard)</a></p>
+        </div>
+
+      </aside>
+
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> Your Name — Built with ❤️ • <span style="color:var(--muted)">Responsive • Accessible • Minimal</span></p>
+    </footer>
+  </div>
 
   <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const menu = document.getElementById('menu');
-    menuBtn?.addEventListener('click', () => {
-      const open = menu.hidden;
-      document.body.classList.toggle('menu-open', open);
-      menu.hidden = !open;
-      menuBtn.setAttribute('aria-expanded', String(open));
-    });
+    // Basic light/dark toggle with persistence
+    const root = document.documentElement;
+    const page = document.getElementById('page');
+    const themeToggle = document.getElementById('themeToggle');
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
 
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Copy email helper
-    const copyBtn = document.getElementById('copyEmailBtn');
-    const emailLink = document.getElementById('emailLink');
-    copyBtn?.addEventListener('click', async () => {
-      try{
-        await navigator.clipboard.writeText(emailLink.textContent.trim());
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => copyBtn.textContent = 'Copy email', 1500);
-      }catch(e){
-        alert('Copy failed. You can copy it manually.');
+    function setDark(d){
+      if(d){
+        document.documentElement.classList.add('dark');
+        themeToggle.setAttribute('aria-pressed','true');
+      } else {
+        document.documentElement.classList.remove('dark');
+        themeToggle.setAttribute('aria-pressed','false');
       }
+    }
+
+    // initialize from preference or localStorage
+    const saved = localStorage.getItem('theme');
+    if(saved){
+      setDark(saved === 'dark');
+    } else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+      setDark(true);
+    } else {
+      setDark(false);
+    }
+
+    themeToggle.addEventListener('click', ()=>{
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark':'light');
+      themeToggle.blur();
     });
 
-    // Reduce motion preference respect (optional enhancements would check this)
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Small helper: allow easy editing of name from console
+    window.portfolio = {
+      setName(n){document.getElementById('name').textContent=n;document.getElementById('heroName').textContent=n;document.querySelector('.logo').textContent = n.split(' ').map(s=>s[0]).slice(0,2).join('');}
+    }
   </script>
 </body>
 </html>
