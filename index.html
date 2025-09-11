@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Your Name — Portfolio</title>
-  <meta name="description" content="Your Name — Professional portfolio." />
+  <title>Donggeon (Tyler) Kim — Portfolio</title>
+  <meta name="description" content="Donggeon Kim — Professional portfolio." />
   <style>
     :root{
       --bg: #f7f8fb;
@@ -63,15 +63,26 @@
     @media (max-width:900px){main{grid-template-columns:1fr;padding-bottom:24px}}
     .card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
 
-    .hero{padding:22px;display:flex;flex-direction:column;gap:14px}
-    .roles{display:flex;flex-wrap:wrap;gap:8px}
+    .hero{padding:22px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+    .roles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
     .chip{padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--text) 4%, transparent);font-size:13px;color:var(--muted)}
 
-    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .hero-pic{
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      object-fit:cover;
+      box-shadow:var(--shadow);
+      margin-bottom:16px;
+      border: 4px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:16px}
     @media (max-width:900px){.projects{grid-template-columns:1fr}}
-    .project{padding:14px;border-radius:10px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--text) 2%, transparent));border:1px solid color-mix(in srgb,var(--text) 3%, transparent)}
-    .project h3{margin:0 0 6px}
+    .project{padding:14px;border-radius:10px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--text) 2%, transparent));border:1px solid color-mix(in srgb,var(--text) 3%, transparent);text-align:center}
+    .project h3{margin:8px 0 6px}
     .project p{margin:0;color:var(--muted);font-size:14px}
+    .project img{width:100%;height:140px;object-fit:cover;border-radius:8px;cursor:pointer;box-shadow:var(--shadow)}
 
     aside .card{position:sticky;top:24px}
     .download-area{text-align:center}
@@ -89,56 +100,64 @@
   <div class="container" id="page">
     <header>
       <div class="brand">
-        <div class="logo">YN</div>
+        <div class="logo">TK</div>
         <div>
-          <h1 id="name">Your Name</h1>
-          <p class="lead">Product Designer & Frontend Engineer — building clean, accessible interfaces.</p>
+          <h1 id="name">Tyler Kim</h1>
+          <p class="lead">Senior Chemical Engineering Student @ University of Maryland, College Park</p>
         </div>
       </div>
 
       <div class="controls">
-        <button id="themeToggle" class="btn secondary" aria-pressed="false" title="Toggle light / dark mode">🌗 Toggle</button>
+        <button id="themeToggle" class="btn secondary" aria-pressed="false" title="Toggle light / dark mode">⏾ Toggle</button>
         <a class="btn download" href="resume.pdf" download="YourName_Resume.pdf" id="downloadResume">⬇️ Resume</a>
       </div>
     </header>
 
     <main>
       <section class="card hero">
-        <div class="roles">
-          <span class="chip">Frontend</span>
-          <span class="chip">UX</span>
-          <span class="chip">Design Systems</span>
-          <span class="chip">React</span>
-        </div>
+        <img src="profile.jpg" class="hero-pic" />
 
-        <h2 style="margin-top:4px">Hello — I’m <span id="heroName">Your Name</span>. I design and build delightful product experiences.</h2>
-        <p class="lead">I work on consumer-facing web apps with a focus on performance, accessibility, and polished UI. I’ve shipped interfaces for startups and teams of all sizes.</p>
+        <h2 style="margin-top:4px">Hey there! I’m <span id="heroName">Tyler</span>. I'm an aspiring chemical engineer experienced in engineering biocompatible therapeutics. </h2>
+        <p class="lead">I've worked on various projects that integrate machine learning for optimization and exploring new platforms for drug delivery to tackle issues regarding women's health, gastrointestinal, and infectious disorders.</p>
 
-        <div style="display:flex;gap:12px;margin-top:14px">
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:14px">
           <a class="btn" href="#projects">View projects</a>
-          <a class="btn" href="mailto:youremail@example.com">Get in touch</a>
+          <a class="btn" href="mailto:donggeonk8@gmail.com">Get in touch</a>
         </div>
 
-        <section style="margin-top:18px">
-          <h3 style="margin:0 0 10px">Selected projects</h3>
+        <section style="margin-top:18px;text-align:left;width:100%">
+          <h3 style="margin:0 0 10px">My Projects</h3>
           <div class="projects" id="projects">
             <article class="project">
-              <h3>Project One</h3>
+              <a href="#project1"><img src="project1.jpg" alt="Project One" /></a>
+              <h3>Machine Learning Guided Optimization for Extracellular Vesicle Production</h3>
               <p>Brief description about the project, your role, and technologies used.</p>
             </article>
             <article class="project">
-              <h3>Project Two</h3>
+              <a href="#project2"><img src="project2.jpg" alt="Project Two" /></a>
+              <h3>Quantifying Curcumin Loading Efficiencies and Release Profiles of L. Crispatus EVs</h3>
               <p>Brief description about the project, your role, and technologies used.</p>
             </article>
             <article class="project">
-              <h3>Project Three</h3>
-              <p>Brief description about the project, your role, and technologies used.</p>
-            </article>
-            <article class="project">
-              <h3>Project Four</h3>
+              <a href="#project3"><img src="project3.jpg" alt="Project Three" /></a>
+              <h3>Quantifying Progesterone Loading Efficiencies and Release Profiles of L. Crispatus EVs</h3>
               <p>Brief description about the project, your role, and technologies used.</p>
             </article>
           </div>
+        </section>
+
+        <!-- Detailed project sections -->
+        <section id="project1" class="card" style="margin-top:24px;text-align:left">
+          <h3>Project One — Details</h3>
+          <p>Here you can describe the project in detail, highlight challenges, contributions, and outcomes.</p>
+        </section>
+        <section id="project2" class="card" style="margin-top:24px;text-align:left">
+          <h3>Project Two — Details</h3>
+          <p>Here you can describe the project in detail, highlight challenges, contributions, and outcomes.</p>
+        </section>
+        <section id="project3" class="card" style="margin-top:24px;text-align:left">
+          <h3>Project Three — Details</h3>
+          <p>Here you can describe the project in detail, highlight challenges, contributions, and outcomes.</p>
         </section>
 
       </section>
@@ -146,24 +165,24 @@
       <aside>
         <div class="card">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-            <div style="width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),transparent);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--card)">YN</div>
+            <div style="width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),transparent);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--card)">TK</div>
             <div>
-              <div style="font-weight:700">Your Name</div>
-              <div style="color:var(--muted);font-size:13px">Location — City, Country</div>
+              <div style="font-weight:700">Tyler Kim</div>
+              <div style="color:var(--muted);font-size:13px">Derwood, MD</div>
             </div>
           </div>
 
-          <div class="meta" style="margin-bottom:8px"><span>Experience</span><span>3+ yrs</span></div>
-          <div class="meta" style="margin-bottom:12px"><span>Role</span><span>Frontend Engineer</span></div>
+          <div class="meta" style="margin-bottom:8px"><span>Experience</span><span>1.5+ yrs</span></div>
+          <div class="meta" style="margin-bottom:12px"><span>Role</span><span>Labatorary Research Assistant</span></div>
 
           <div style="margin-bottom:12px">
             <h4 style="margin:0 0 8px">Skills</h4>
             <div style="display:flex;flex-wrap:wrap;gap:8px">
-              <span class="chip">HTML</span>
-              <span class="chip">CSS</span>
-              <span class="chip">JavaScript</span>
-              <span class="chip">React</span>
-              <span class="chip">TypeScript</span>
+              <span class="chip">Nanoparticle Tracking Analysis</span>
+              <span class="chip">Data Analysis</span>
+              <span class="chip">Prism</span>
+              <span class="chip">Laboratory Skills</span>
+              <span class="chip">MS Office</span>
             </div>
           </div>
 
@@ -171,7 +190,7 @@
             <a class="btn download" href="resume.pdf" download>
               ⬇️ Download resume
             </a>
-            <p style="margin-top:8px;color:var(--muted);font-size:13px">Resume will download as <strong>YourName_Resume.pdf</strong>. Place <code>resume.pdf</code> in the same repo root.</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:13px">Resume will download as <strong>Tyler_Resume.pdf</strong>.</p>
           </div>
 
         </div>
@@ -180,8 +199,8 @@
 
         <div class="card">
           <h4 style="margin:0 0 8px">Contact</h4>
-          <p style="margin:0 0 12px;color:var(--muted)">Email — <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-          <p style="margin:0 0 10px;color:var(--muted)">Or download my vCard: <a href="#">(add vcard)</a></p>
+          <p style="margin:0 0 12px;color:var(--muted)">Email — <a href="mailto:donggeonk8@gmail.com">donggeonk8@gmail.com</a></p>
+          <p style="margin:0 0 10px;color:var(--muted)">LinkedIn — : <a href="https://www.linkedin.com/in/dong-kim8">dong-kim8</a></p>
         </div>
 
       </aside>
@@ -189,7 +208,7 @@
     </main>
 
     <footer>
-      <p>© <span id="year"></span> Your Name — Built with ❤️ • <span style="color:var(--muted)">Responsive • Accessible • Minimal</span></p>
+      <p>© <span id="year"></span> Tyler Kim — Hosted by GitHub Pages • <span style="color:var(--muted)"></span></p>
     </footer>
   </div>
 
