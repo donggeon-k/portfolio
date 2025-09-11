@@ -59,6 +59,13 @@
     .btn.secondary{background:transparent;border:1px solid color-mix(in srgb,var(--text) 6%, transparent);}
     .btn.download{background:linear-gradient(90deg,var(--accent), color-mix(in srgb,var(--accent) 65%, var(--card) 35%));color:var(--card)}
 
+    /* Make dark mode toggle button text white in dark mode */
+    .dark .btn.secondary {
+      color: #fff;
+      border: 1px solid var(--accent);
+      background: transparent;
+      transition: color 0.2s;
+    }
     main{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
     @media (max-width:900px){main{grid-template-columns:1fr;padding-bottom:24px}}
     .card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
@@ -108,15 +115,16 @@
       </div>
 
       <div class="controls">
-        <button id="themeToggle" class="btn secondary" aria-pressed="false" title="Toggle light / dark mode">⏾ Toggle</button>
+        <button id="themeToggle" class="btn secondary" aria-pressed="false" title="Toggle light / dark mode">Toggle Dark Mode</button>
         <a class="btn download"  href="assets/Tyler_Resume.pdf" download="Tyler_Resume.pdf" id="downloadResume">Download Resume</a>
       </div>
     </header>
 
     <main>
       <section class="card hero">
-        <img src="profile.jpg" class="hero-pic" />
+        <img src="assets/pfp.jpeg" class="hero-pic" />
 
+        <!-- Introduction -->
         <h2 style="margin-top:4px">Hey there! I’m <span id="heroName">Tyler</span>. I'm an aspiring chemical engineer experienced in engineering biocompatible therapeutics. </h2>
         <p class="lead">I've worked on various projects that integrate machine learning for optimization and exploring new platforms for drug delivery to tackle issues regarding women's health, gastrointestinal, and infectious disorders.</p>
 
@@ -146,7 +154,7 @@
           </div>
         </section>
 
-        <!-- Detailed project sections -->
+        <!-- Project sections -->
         <section id="project1" class="card" style="margin-top:24px;text-align:left">
           <h3>Project One — Details</h3>
           <p>Here you can describe the project in detail, highlight challenges, contributions, and outcomes.</p>
@@ -161,7 +169,8 @@
         </section>
 
       </section>
-
+      
+      <!-- Sidebar -->
       <aside>
         <div class="card">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
@@ -189,6 +198,7 @@
 
         <div style="height:18px"></div>
 
+        <!-- Contact section -->
         <div class="card">
           <h4 style="margin:0 0 8px">Contact</h4>
           <p style="margin:0 0 12px;color:var(--muted)">Email — <a href="mailto:donggeonk8@gmail.com">donggeonk8@gmail.com</a></p>
@@ -205,7 +215,7 @@
   </div>
 
   <script>
-    // Basic light/dark toggle with persistence
+    // Light / Dark mode toggle
     const root = document.documentElement;
     const page = document.getElementById('page');
     const themeToggle = document.getElementById('themeToggle');
@@ -222,7 +232,7 @@
       }
     }
 
-    // initialize from preference or localStorage
+    // Match system preference, if no preference saved
     const saved = localStorage.getItem('theme');
     if(saved){
       setDark(saved === 'dark');
@@ -238,10 +248,6 @@
       themeToggle.blur();
     });
 
-    // Small helper: allow easy editing of name from console
-    window.portfolio = {
-      setName(n){document.getElementById('name').textContent=n;document.getElementById('heroName').textContent=n;document.querySelector('.logo').textContent = n.split(' ').map(s=>s[0]).slice(0,2).join('');}
-    }
   </script>
 </body>
 </html>
